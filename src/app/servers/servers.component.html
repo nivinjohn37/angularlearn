@@ -7,7 +7,6 @@
 <ng-template #noServer>
     <p>No Server was created</p>
 </ng-template>
-
 <label>User Name</label>
 <input type="text" class="form-control" [(ngModel)]="userName" (input)="onUpdateUserName($event)" />
 <button class="btn btn-primary" [disabled]="!allowUserNameButton" (click)="onResetUserName()">Reset Username</button>
@@ -15,5 +14,9 @@
 <app-server *ngFor="let server of servers"></app-server>
 
 <hr>
-<button class="btn btn-primary">Display Details</button>
-<p>Secret Password=tuna</p>
+<!-- <button class="btn btn-primary" (click)="isSecButtonPressed= !isSecButtonPressed">Display Details</button> -->
+<button class="btn btn-primary" (click)="onSecPassButtonPressed()">Display Details</button>
+<p *ngIf="isSecButtonPressed">Secret Password=tuna</p>
+<div *ngFor="let secLog of secButtonLog; let i =index"
+    [ngStyle]="{backgroundColor: i>=4?'blue':'transparent'}"
+    [ngClass]="{'white-text':i>=4}">{{secLog}}</div>

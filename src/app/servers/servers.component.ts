@@ -14,7 +14,10 @@ export class ServersComponent implements OnInit {
   serverName = 'TestServer';
   userName = '';
   serverCreated = false;
-  servers=['TestServer','TestServer 2'];
+  servers = ['TestServer', 'TestServer 2'];
+  isSecButtonPressed = true;
+  secButtonLog =[];
+
   constructor() {
     setTimeout(() => {
       this.allowNewServer = true;
@@ -27,17 +30,21 @@ export class ServersComponent implements OnInit {
     //this.serverCreationStatus = "Server was created";
     this.serverCreated = true;
     this.servers.push(this.serverName);
-    this.serverCreationStatus = this.serverCreationStatus === "No server was created" ? "Server was created" : "No server was created"+this.serverName;
+    this.serverCreationStatus = this.serverCreationStatus === "No server was created" ? "Server was created" : "No server was created" + this.serverName;
   }
 
-  onUpdateServerName(oEvent:Event) {
+  onUpdateServerName(oEvent: Event) {
     this.serverName = (<HTMLInputElement>oEvent.target).value;
   }
-  onUpdateUserName(oEvent:Event) {
+  onUpdateUserName(oEvent: Event) {
     this.userName = (<HTMLInputElement>oEvent.target).value;
-    this.allowUserNameButton = this.userName?true:false;
+    this.allowUserNameButton = this.userName ? true : false;
   }
-  onResetUserName(){
-    this.userName ="";
+  onResetUserName() {
+    this.userName = "";
+  }
+  onSecPassButtonPressed() {
+    this.isSecButtonPressed = !this.isSecButtonPressed;
+    this.secButtonLog.push(new Date());
   }
 }
